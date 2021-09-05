@@ -1,0 +1,17 @@
+
+
+.show-bgcolor{
+    background-color: #fb9500;
+    border-radius: 5px;
+    
+}
+
+.show-bgcolor p{
+    color: white !important;
+}
+
+
+.change-color{
+    background-color: #007bff;
+    color: white;
+}

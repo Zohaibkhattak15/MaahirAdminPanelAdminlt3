@@ -1,0 +1,8 @@
+.menuecolor{
+    color: black !important;
+}
+
+#icon-bar-sec .iconbar:hover{
+    background-color: lightblue;
+    cursor: pointer;
+}
