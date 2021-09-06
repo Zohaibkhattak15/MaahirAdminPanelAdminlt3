@@ -6,7 +6,9 @@ import MaterialTable from 'material-table'
 import {Select,MenuItem} from '@material-ui/core';
 import {MTableCell} from 'material-table';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import axios from "axios";
+import Alert from '@material-ui/lab/Alert';
+import axios from 'axios';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 
 // { userData : {users, filteredData}, dispatch }
@@ -15,16 +17,22 @@ function ServiceProviders() {
 
   const [allData, setallData] = useState([]);
   const [filterData, setfilterData] = useState([]);
-  const [username, setusername] = useState('all');
+  const [gold, setgold] = useState('all');
+  const [uniqueId, setuniqueId] = useState(1);
  
   useEffect(() => {
-
-      let url = 'https://jsonplaceholder.typicode.com/users'
-        fetch(url).then( resp => resp.json()).then( resp => {
-         setfilterData(resp)
-         setallData(resp)
-        })
+    getStudent();
+    
    },[]);
+
+   const getStudent = () =>{
+    let url = 'http://localhost:3000/olympic'
+        
+    fetch(url).then( resp => resp.json()).then( resp => {
+     setfilterData(resp)
+     setallData(resp)
+    })
+   }
 
   //  const getUserDataAsync = () => {
   //   axios
@@ -39,21 +47,32 @@ function ServiceProviders() {
   //   });
   //  }
 
-  const handleDeleteRows = oldData =>{
-  new Promise((resolve, reject) => {
-      setTimeout(() => {
-          const dataDelete = [...allData];
-          const index = oldData.tableData.id;
-          dataDelete.splice(index, 1);
-          setallData([...dataDelete]);
 
-          resolve();
-      }, 1000);
-  })
-  };
+  const deleteRecord = () => {
+    if(uniqueId){
+      let index = allData[uniqueId]?.id;
+      console.log(allData);
+      axios.delete(`http://localhost:3000/olympic${index}`)
+      .then(res=>{
+        if(res.status===200){
+          setallData(allData.splice(index , 1));
+          alert('Deleted');
+        }
+      }).catch(err=>console.log(err));
+
+    }
+
+    else{
+      alert('the record didnt found ')
+    }
+  }
+
+  const updateRecord = () => {
+    alert('the record updated...')
+  }
   
   const onButtonClick = () => {
-    setfilterData( filterData === 'all' ? allData : allData.filter( data => data.username === username));
+    setfilterData( filterData === 'all' ? allData : allData.filter( data => data.gold === gold));
   }
 
   // const clearAllFilters = () => {
@@ -63,28 +82,27 @@ function ServiceProviders() {
   const columns = [
     
     { 
-      title: "Avatar", field: "name",
-      
+      title: "athlete", field: "athlete", 
       cellStyle : {
         fontSize : '14px'
       }
    },
     { 
-      title: "Email", field: "email",
+      title: "age", field: "age",
       
       cellStyle : {
         fontSize : '14px'
       } 
     },
     { 
-      title: "Age", field: "phone",
+      title: "country", field: "country",
      
       cellStyle : {
         fontSize : '14px'
       } 
     },
     { 
-      title: "Group", field: "website",
+      title: "year", field: "year",
      
       cellStyle : {
         fontSize : '14px'
@@ -100,8 +118,74 @@ function ServiceProviders() {
       
       cellStyle : {
         fontSize : '14px'
-      } 
-    }
+      }
+    },
+    
+      {
+             title: "Status", field: "" ,
+             cell: (data) => {
+              return (<i className="text-danger fas fa-trash-alt" onClick={() => {
+                setuniqueId(data?._id + 1);
+              }}/>)
+          },
+             render:(data) =><div>
+                     <div>
+                        <span style={{color:'red' ,cursor:'pointer'}}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+                    </div>
+      
+          {/* Modal */}
+                  <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalCenterTitle">Permanent Delete Maahir</h5>
+                          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div className="modal-body">
+                              <Alert variant="filled" severity="error">
+                                This item will be permanently deleted.
+                              </Alert>
+                              <div>
+                                <p>
+                                  
+                                <span>
+                                  <p> </p>  
+                                  <p> Are you sure you want to permanently delete
+                                  <span style={{backgroundColor:'orange'}}> {allData[uniqueId]?.athlete } </span> ?
+                                </p>
+                                </span>
+              
+                                <span>
+                                  <p> 
+                                  This action cannot be undone and may cause data integrity!
+                                  </p>
+                                </span>
+                                </p>
+              
+                              </div>
+              
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="button" className="btn btn-danger" onClick={deleteRecord}>Permanent Delete Maahir</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* for updating the record  */}
+                  <div>
+                        <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
+                    </div>
+      
+          {/* Modal */}
+                  
+          </div>,
+          },
+          
+    
   ]
 
 
@@ -130,13 +214,13 @@ function ServiceProviders() {
                                             labelId="demo-simple-select-outlined-label"
                                             id="demo-simple-select-outlined"
                                             style={{width:'250px' , height : '40px' , paddingLeft : '10px'}}
-                                            value={username}
-                                            onChange={(e) => setusername(e.target.value)}
+                                            value={gold}
+                                            onChange={(e) => setgold(e.target.value)}
                                             >
                                                 <MenuItem  value={'all'}><em>All</em></MenuItem>
-                                                <MenuItem  value={'Bret'}>Bret</MenuItem>
-                                                <MenuItem  value={'Antonette'}>Antonette </MenuItem>
-                                                <MenuItem  value={'Samantha'}>Samantha</MenuItem>
+                                                <MenuItem  value={8}>8</MenuItem>
+                                                <MenuItem  value={6}>6 </MenuItem>
+                                                <MenuItem  value={4}>4</MenuItem>
                                             </Select>
                                         </div>
                                         <div className='col-4'>
@@ -173,7 +257,9 @@ function ServiceProviders() {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-                                          // onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                          onRowClick={((evt, selectedRow) =>{  
+                                            setuniqueId(selectedRow.tableData.id);
+                                          })}
                                           options={
                                             {
                                               exportButton: true,
@@ -195,7 +281,7 @@ function ServiceProviders() {
                                             {
                                               icon: () => <DeleteIcon />,
                                               tooltip: "Delete Rows",
-                                              onClick: handleDeleteRows
+                                              // onClick: handleDeleteRows
                                             }
                                           ]}
                                           components={{
@@ -204,9 +290,10 @@ function ServiceProviders() {
                                             ),
                                           }}
                                           
-                                          data={
-                                           filterData.length === 0 ? allData : filterData
+                                          data={filterData.length === 0 ? allData : filterData
                                            }
+
+                                          
                                         />
                                       </div>    
                                 </Card>
