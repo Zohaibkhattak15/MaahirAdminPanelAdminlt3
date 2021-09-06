@@ -159,7 +159,7 @@ function ServiceProviders() {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-                                          // onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                          onRowClick={((evt, selectedRow) => console.log(selectedRow.tableData.id))}
                                           options={
                                             {
                                               exportButton: true,
