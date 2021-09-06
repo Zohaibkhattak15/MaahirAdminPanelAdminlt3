@@ -1,8 +1,21 @@
 import { Card } from '@material-ui/core';
-import React from 'react';
+import axios from 'axios';
+import React,{useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
  
-export default function updateCategory(props) {
+const UpdateCategory = (props) => {
+  const [rowData, setrowData] = useState(props.location.state);
+
+    useEffect(() => {
+      console.log(props.location.state)
+    }, [])
+
+    const updateRow = () => {
+      axios.put('http://localhost:3000/olympic', rowData)
+      .then(resp => console.log(resp))
+      .catch(err => console.log(err)) 
+    }
+    console.log(rowData.athlete)
     return (
       <div className="wrapper" style={{backgroundColor : 'white'}}>
       {/* Navbar */}
@@ -37,13 +50,18 @@ export default function updateCategory(props) {
                     <div className="form-group row">
                       <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Title :</label>
                       <div className="col-sm-10">
-                        <input type="text"  className="form-control" id="inputEmail3" placeholder="" />
+                        <input type="text"  value={rowData?.athlete} onChange={(e) =>
+                         setrowData({
+                          ...rowData ,
+                          athlete:e.target.value
+                          }) } 
+                          className="form-control" id="inputEmail3" placeholder="" />
                       </div>
                     </div>
                     <div className="form-group row">
                       <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Description :</label>
                         <div className="col-sm-10">
-                          <textarea type="text" className="form-control" id="inputEmail3" placeholder="" />
+                          <textarea type="text" value={rowData?.country} onChange={(e) => setrowData(e.target.value) } className="form-control" id="inputEmail3" placeholder="" />
                         </div>
                       </div>
                     
@@ -71,7 +89,7 @@ export default function updateCategory(props) {
 
                                 </div>
                                 <div className='col-2'> 
-                                  <button type="submit" style={{width:'150px'}} className="btn btn-default float-right"><i class="fas fa-redo"></i> Reset</button>
+                                  <button type="submit" style={{width:'150px'}} className="btn btn-default float-right" onClick={updateRow}><i class="fas fa-redo"></i> Reset</button>
                                 </div>
                           </div>
                         </div>
@@ -87,3 +105,5 @@ export default function updateCategory(props) {
     </div>
     )
 }
+
+export default UpdateCategory;

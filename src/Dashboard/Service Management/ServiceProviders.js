@@ -7,7 +7,6 @@ import {Select,MenuItem} from '@material-ui/core';
 import {MTableCell} from 'material-table';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
-import axios from 'axios';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 
@@ -22,7 +21,6 @@ function ServiceProviders() {
  
   useEffect(() => {
     getStudent();
-    
    },[]);
 
    const getStudent = () =>{
@@ -51,15 +49,16 @@ function ServiceProviders() {
   const deleteRecord = () => {
     if(uniqueId){
       let index = allData[uniqueId]?.id;
+      setallData(allData.splice(index , 1));
       console.log(allData);
-      axios.delete(`http://localhost:3000/olympic/${index}`)
-      .then(res =>{
-        if(res.status === 200){
-          setallData(allData.splice(index , 1));
-          console.log(allData);
-          alert('Deleted');
-        }
-      }).catch(err=>console.log(err));
+      // axios.delete(`http://localhost:3000/olympic/${index}`)
+      // .then(res =>{
+      //   if(res.status === 200){
+          
+      //     console.log(allData);
+      //     alert('Deleted');
+      //   }
+      // }).catch(err=>console.log(err));
 
     }
 
@@ -73,7 +72,7 @@ function ServiceProviders() {
   }
   
   const onButtonClick = () => {
-    setfilterData( filterData === 'all' ? allData : allData.filter( data => data.gold === gold));
+    setfilterData( gold === 'all' ? allData : allData.filter( data => data.gold === gold));
   }
 
   // const clearAllFilters = () => {
@@ -125,7 +124,8 @@ function ServiceProviders() {
       {
              title: "Deleted", field: "" ,
   
-             render:() =><div style={{width : '100px'}}>
+             render:() =>
+             <div style={{width : '100px'}}>
                      <div style={{paddingLeft:'20px'}}>
                         <span style={{color:'red' ,cursor:'pointer' , }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
                     </div>
@@ -136,7 +136,7 @@ function ServiceProviders() {
                       <div className="modal-content">
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalCenterTitle">Permanent Delete Maahir</h5>
-                          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                          <button type="button"  className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                           </button>
                         </div>
@@ -150,7 +150,7 @@ function ServiceProviders() {
                                 <span>
                                   <p> </p>  
                                   <p> Are you sure you want to permanently delete
-                                  <span style={{backgroundColor:'orange'}}> {allData[uniqueId]?.athlete } </span> ?
+                                  <span  style={{backgroundColor:'orange'}}> {allData[uniqueId]?.athlete } </span> ?
                                 </p>
                                 </span>
               
@@ -166,7 +166,7 @@ function ServiceProviders() {
                         </div>
                         <div className="modal-footer">
                           <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="button" className="btn btn-danger" onClick={deleteRecord}>Permanent Delete Maahir</button>
+                          <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={deleteRecord}>Permanent Delete Maahir</button>
                         </div>
                       </div>
                     </div>
@@ -253,13 +253,9 @@ function ServiceProviders() {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-<<<<<<< HEAD
-                                          onRowClick={((evt, selectedRow) => console.log(selectedRow.tableData.id))}
-=======
                                           onRowClick={((evt, selectedRow) =>{  
                                             setuniqueId(selectedRow.tableData.id);
                                           })}
->>>>>>> 851216db7ee80b0f0c0367847deac2d96d23d933
                                           options={
                                             {
                                               exportButton: true,
@@ -290,8 +286,7 @@ function ServiceProviders() {
                                             ),
                                           }}
                                           
-                                          data={filterData.length === 0 ? allData : filterData
-                                           }
+                                          data={filterData}
 
                                           
                                         />

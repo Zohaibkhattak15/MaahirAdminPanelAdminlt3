@@ -34,7 +34,7 @@ import axios from 'axios';
             return;
           }
     
-                 axios.post('https://maahirpro.com/maahir/index.php/admin/auth', {
+                axios.post('https://maahirpro.com/maahir/index.php/admin/auth', {
                 email: email ,
                 password : pass
             })

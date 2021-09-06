@@ -11,12 +11,18 @@ const Category = () => {
 
   // const [selectedRow] = useState(null);
   const [tabledata, setTabledata] = useState([]);
-  const [uniqueId, setuniqueId] = useState(1);
+  const [uniqueId, setuniqueId] = useState();
   const  history = useHistory();
 
 
-  function updateRecord (){
-    history.replace('/updateCategory')
+  function updateRecord (index){
+    console.log(index);
+      history.push({
+        pathname: '/updateCategory',
+        state: tabledata[index]
+      });
+   
+
   }
   
 
@@ -74,7 +80,7 @@ const Category = () => {
     title: "Update", field: "", 
     render:()=><div>
     <div>
-      <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
+      <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon /></span>
     </div>
     
   </div>,
@@ -146,7 +152,7 @@ const Category = () => {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-                                          onRowClick={((evt, selectedRow) => setuniqueId(selectedRow.tableData.id))}
+                                          onRowClick={((evt, selectedRow) => updateRecord(selectedRow.tableData.id))}
                                           options={
                                           
                                             {
@@ -163,8 +169,9 @@ const Category = () => {
                                             
                                           }
                                        
-
-                                          data={tabledata}
+                                          data={
+                                            tabledata
+                                            }
                                         />
                                       </div>
                                   </Card>
