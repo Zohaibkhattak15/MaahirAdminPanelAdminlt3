@@ -4,7 +4,8 @@ import MaterialTable from 'material-table'
 // import { connect } from "react-redux";
 // import * as actionTypes from '../../Store/actionTypes/common';
 import {Select,MenuItem} from '@material-ui/core';
-import {MTableCell} from 'material-table'
+import {MTableCell} from 'material-table';
+import DeleteIcon from '@material-ui/icons/Delete';
 // import axios from "axios";
 
 
@@ -37,6 +38,19 @@ function ServiceProviders() {
   //     dispatch(actionTypes.fetchUserFailure(errorMessage));
   //   });
   //  }
+
+  const handleDeleteRows = oldData =>{
+  new Promise((resolve, reject) => {
+      setTimeout(() => {
+          const dataDelete = [...allData];
+          const index = oldData.tableData.id;
+          dataDelete.splice(index, 1);
+          setallData([...dataDelete]);
+
+          resolve();
+      }, 1000);
+  })
+  };
   
   const onButtonClick = () => {
     setfilterData( filterData === 'all' ? allData : allData.filter( data => data.username === username));
@@ -173,7 +187,17 @@ function ServiceProviders() {
                                                                         }
                                                             }
                                             }
+
+                                            
                                           }
+
+                                          actions={[
+                                            {
+                                              icon: () => <DeleteIcon />,
+                                              tooltip: "Delete Rows",
+                                              onClick: handleDeleteRows
+                                            }
+                                          ]}
                                           components={{
                                             Cell: props => (
                                               <MTableCell {...props} style={{ padding: '4px 8px 4px 8px' }} />
