@@ -45,6 +45,7 @@ export default function App() {
           <Route  path='/Coustomers' name='Coustomers' component={Layout} />
           <Route  path='/ServiceProviders' name='ServiceProviders' component={Layout} />
           <Route  path='/addCategory' name='addCategory' component={Layout} />
+          <Route  path='/updateCategory' name='updateCategory' component={Layout} />
           <Route  path='/AddAppointment' name='AddAppointment' component={Layout} />
           <Route  path='/Testing' name='Testing' component={Layout} />
           <Route  path='/Group' name='Group' component={Layout} />

@@ -1,15 +1,37 @@
-import React, { useState  } from 'react';
+import React, { useState , useEffect  } from 'react';
 import MaterialTable from 'material-table'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
 import './Category.css';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 
 
 const Category = () => {
 
   // const [selectedRow] = useState(null);
-  const [Tabledata, setTabledata] = useState([]);
+  const [tabledata, setTabledata] = useState([]);
+  const [uniqueId, setuniqueId] = useState(1);
+  const  history = useHistory();
+
+
+  function updateRecord (){
+    history.replace('/updateCategory')
+  }
+  
+
+  useEffect(() => {
+    getStudent();
+    
+   },[]);
+
+   const getStudent = () =>{
+    let url = 'http://localhost:3000/olympic'
+        
+    fetch(url).then( resp => resp.json()).then( resp => {
+     setTabledata(resp)
+    })
+   }
 
   const columns = [
     { title: "Title", field: "athlete" ,
@@ -48,6 +70,16 @@ const Category = () => {
       fontSize : '14px'
     }
   },
+  {
+    title: "Update", field: "", 
+    render:()=><div>
+    <div>
+      <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
+    </div>
+    
+  </div>,
+ },
+
     
   ]
 
@@ -62,13 +94,13 @@ const Category = () => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1>Appointment</h1>
+                  <h1>Category</h1>
                 </div>
                 
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item" ><Link to='/Dashboard'>Home</Link></li>
-                    <li className="breadcrumb-item" ><Link to='/Appointment'>Appointment </Link> </li>
+                    <li className="breadcrumb-item" ><Link to='/Appointment'>Category </Link> </li>
                   </ol>
                 </div>
 
@@ -114,65 +146,25 @@ const Category = () => {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-                                          // onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                          onRowClick={((evt, selectedRow) => setuniqueId(selectedRow.tableData.id))}
                                           options={
-                                            // {
-                                            // rowStyle: rowData => ({
-                                            //   backgroundColor: (selectedRow === rowData.tableData.id) ? '#dff0d8' : '#FFF'
-                                            // })},
-                                            // //this is option section
+                                          
                                             {
                                               exportButton: true,
                                               actionsColumnIndex: -1,
                                               addRowPosition : 'first',
-                                              selection: true
+                                              selection: true,
+                                              rowStyle: x => {
+                                                if (x.tableData.id % 2) {
+                                                    return {backgroundColor: "#f2f2f2"}
+                                                                        }
+                                                            }
                                             }
+                                            
                                           }
-                                          editable= {
-                                            {onRowAdd : newData =>
-                                              new Promise((resolve, reject) => {
-                                                  setTimeout(() => {
-                                                      setTabledata([...Tabledata, newData]); 
+                                       
 
-                                                      resolve();
-                                                  }, 1000);
-                                              }),}
-                                          }
-                                          
-
-                                          data={ query =>
-                                            new Promise((resolve, reject) => {
-
-
-                                              
-                                              // prepare your data and then call resolve like this:
-                                              // let url = 'http://localhost:3000/olympic?'
-                                              //searching
-                                              // if (query.search) {
-                                              //   url += `q=${query.search}`
-                                              // }
-                                              //sorting 
-                                              // if (query.orderBy) {
-                                              //   url += `&_sort=${query.orderBy.field}&_order=${query.orderDirection}`
-                                              // }
-                                             
-                                              //pagination
-                                              // url += `&_page=${query.page + 1}`
-                                              // url += `&_limit=${query.pageSize}`
-
-                                              // fetch(url)
-                                              // .then(resp =>resp.json())
-                                                  
-                                              // .then(resp => {
-                                              //   resolve({
-                                              //     data: resp,// your data array
-                                              //     // page: query.page,// current page number
-                                              //     // totalCount: 20// total row number
-                                              //   });
-                                              // })
-
-                                            })
-                                          }
+                                          data={tabledata}
                                         />
                                       </div>
                                   </Card>

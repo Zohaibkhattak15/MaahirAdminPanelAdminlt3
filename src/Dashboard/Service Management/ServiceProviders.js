@@ -52,10 +52,11 @@ function ServiceProviders() {
     if(uniqueId){
       let index = allData[uniqueId]?.id;
       console.log(allData);
-      axios.delete(`http://localhost:3000/olympic${index}`)
-      .then(res=>{
-        if(res.status===200){
+      axios.delete(`http://localhost:3000/olympic/${index}`)
+      .then(res =>{
+        if(res.status === 200){
           setallData(allData.splice(index , 1));
+          console.log(allData);
           alert('Deleted');
         }
       }).catch(err=>console.log(err));
@@ -122,15 +123,11 @@ function ServiceProviders() {
     },
     
       {
-             title: "Status", field: "" ,
-             cell: (data) => {
-              return (<i className="text-danger fas fa-trash-alt" onClick={() => {
-                setuniqueId(data?._id + 1);
-              }}/>)
-          },
-             render:(data) =><div>
-                     <div>
-                        <span style={{color:'red' ,cursor:'pointer'}}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+             title: "Deleted", field: "" ,
+  
+             render:() =><div style={{width : '100px'}}>
+                     <div style={{paddingLeft:'20px'}}>
+                        <span style={{color:'red' ,cursor:'pointer' , }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
                     </div>
       
           {/* Modal */}
@@ -173,18 +170,17 @@ function ServiceProviders() {
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  {/* for updating the record  */}
-                  <div>
-                        <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
-                    </div>
-      
-          {/* Modal */}
-                  
+                  </div>                  
           </div>,
           },
-          
+          {
+            title:'Update ' ,
+            render:()=> 
+            <div> 
+              <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
+            </div>
+
+          }
     
   ]
 
