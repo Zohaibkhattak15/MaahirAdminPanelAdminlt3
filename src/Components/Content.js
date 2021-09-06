@@ -14,6 +14,7 @@ import AddGroup from '../Dashboard/Groups and Users/Groups/AddGroup';
 import User from '../Dashboard/Groups and Users/User';
 import Permission from '../Dashboard/Groups and Users/Permissions/Permission';
 import AddPermission from '../Dashboard/Groups and Users/Permissions/AddPermission'
+import updateCategory from '../Dashboard/MasterData/Category/updateCategory';
 
 
 export default function Content() {
@@ -40,10 +41,11 @@ export default function Content() {
                     <Route path='/Appointment' component={Appointment} />
                     <Route path='/Appversion' component={Appversion} />
                     <Route path='/Category' component={Category} />
+                    <Route path='/addcategory'     component={addCategory} />
+                    <Route path='/updateCategory' component={updateCategory} />
                     <Route path='/Smsnotify' component={Smsnotify} />
                     <Route path='/Coustomers' component={Coustomers} />
                     <Route path='/ServiceProviders' component={ServiceProviders} />
-                    <Route path='/addcategory'     component={addCategory} />
                     <Route path='/AddAppointment'     component={AddAppointment} />
                     <Route path='/Group'  component={Group} />
                     <Route path='/AddGroup'  component={AddGroup} />                    
