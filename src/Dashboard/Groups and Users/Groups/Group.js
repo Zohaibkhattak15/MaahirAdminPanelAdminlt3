@@ -1,36 +1,56 @@
-import React,{useState} from 'react';
+import React from 'react';
 import MaterialTable from 'material-table'
 import { Link } from 'react-router-dom'
 import {Card} from 'react-bootstrap'
+import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import {MTableCell} from 'material-table';
+
 
 
 
 
 const Group = () => {
 
-  const [data, setData] = useState('')
 
   const columns = [
-    { title: "Group", field: "name" ,
+    { title: "Group", field: "id" ,
       cellStyle : {
         fontSize : '14px'
-      }
+      },
+      render: rowData => <Link><u> {rowData.id} </u> </Link>
     },
-    { title: "Description", field: "username",
+    { title: "Description", field: "athlete",
     
     cellStyle : {
       fontSize : '14px'
     } 
   },
-    { title: "Added On", field: "website",
+    { title: "Added On", field: "age",
     cellStyle : {
       fontSize : '14px'
     }
    },
-    { title: "Status", field: "email",
+    { title: "Status", field: "country",
     cellStyle : {
       fontSize : '14px'
-    }
+    },
+    
+   },
+   { title: "", field: "",
+    cellStyle : {
+      fontSize : '14px'
+    },
+    render:() => 
+      <div>
+        <span style={{color:'red' ,cursor:'pointer' }}>
+          <VisibilityIcon style={{ width :'15px', color:'lightblue',}} />
+          <EditIcon style={{ width :'15px', color:'green',marginLeft:'10px'}}/>
+          <SystemUpdateAltIcon  style={{ width :'15px',marginLeft:'10px'}}/>
+
+        </span>
+      </div>,
    }
     
   ]
@@ -108,8 +128,21 @@ const Group = () => {
                                             {
                                               exportButton: true,
                                               selection: true,
+                                              actionsColumnIndex: -1,
+                                              rowStyle: x => {
+                                                if (x.tableData.id % 2) {
+                                                    return {backgroundColor: "#f2f2f2"}
+                                                                        }
+                                                            }
+                                            
                                             }
                                           }
+                                          components={{
+                                            Cell: props => (
+                                              <MTableCell {...props} style={{ padding: '4px 8px 4px 8px' }} />
+                                            ),
+                                          }}
+                                          
                                           
                                           
 
@@ -119,7 +152,7 @@ const Group = () => {
 
                                               
                                               // prepare your data and then call resolve like this:
-                                              let url = 'https://jsonplaceholder.typicode.com/users'
+                                              let url = 'http://localhost:3000/olympic'
                                               //searching
                                               // if (query.search) {
                                               //   url += `q=${query.search}`
@@ -139,46 +172,15 @@ const Group = () => {
                                               .then(resp => {
                                                 resolve({
                                                   data: resp,// your data array
-                                                  // page: query.page,// current page number
-                                                  // totalCount: 20// total row number
+                                                   page: query.page,// current page number
+                                                   totalCount: 20// total row number
                                                 });
                                               })
 
                                             })
                                           }
 
-                                          editable={{
-                                            onRowAdd: newData =>
-                                              new Promise((resolve, reject) => {
-                                                setTimeout(() => {
-                                                  setData([...data, newData]);
-                                                  
-                                                  resolve();
-                                                }, 1000)
-                                              }),
-                                            onRowUpdate: (newData, oldData) =>
-                                              new Promise((resolve, reject) => {
-                                                setTimeout(() => {
-                                                  const dataUpdate = [...data];
-                                                  const index = oldData.tableData.id;
-                                                  dataUpdate[index] = newData;
-                                                  setData([...dataUpdate]);
-                                    
-                                                  resolve();
-                                                }, 1000)
-                                              }),
-                                            onRowDelete: oldData =>
-                                              new Promise((resolve, reject) => {
-                                                setTimeout(() => {
-                                                  const dataDelete = [...data];
-                                                  const index = oldData.tableData.id;
-                                                  dataDelete.splice(index, 1);
-                                                  setData([...dataDelete]);
-                                                  
-                                                  resolve()
-                                                }, 1000)
-                                              }),
-                                          }}
+                                          
                                         />
                                       </div>
                                   </Card>

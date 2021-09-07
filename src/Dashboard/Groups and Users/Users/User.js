@@ -1,63 +1,87 @@
-import React, { useState  } from 'react';
+import React from 'react';
 import MaterialTable from 'material-table'
 import { Link } from 'react-router-dom'
-import {Card} from 'react-bootstrap'
+import {Card} from 'react-bootstrap';
+import Alert from '@material-ui/lab/Alert';
 import {MTableCell} from 'material-table';
 
-import EditIcon from '@material-ui/icons/Edit';
-import ZoomInIcon from '@material-ui/icons/ZoomIn';
-import DeleteIcon from '@material-ui/icons/Delete';
+const User = () => {
 
-
-const Permission = () => {
-
-  // const [selectedRow] = useState(null);
-  const [Tabledata, setTabledata] = useState([]);
 
   const columns = [
-    { title: "Title", field: "athlete" ,
+    { title: "Group", field: "name" ,
       cellStyle : {
         fontSize : '14px'
       },
-      render: rowData => <Link> {rowData.athlete} </Link>
+      
     },
-    { title: "Approved Maahir", field: "age",
+    { title: "Description", field: "username",
     
     cellStyle : {
       fontSize : '14px'
-    } 
+    } ,
+    render: rowData => <Link><u> {rowData.username} </u> </Link>
   },
-    { title: "Pending Maahir", field: "country",
+    { title: "Added On", field: "website",
     cellStyle : {
       fontSize : '14px'
     }
    },
-    { title: "Description", field: "year",
+    { title: "Status", field: "email",
     cellStyle : {
       fontSize : '14px'
     }
-   },
-    { title: "Web Icon", field: "date" ,
-    cellStyle : {
-      fontSize : '14px'
-    }
-  },
-    { title: "Mobile Icon", field: "sport" ,
-    cellStyle : {
-      fontSize : '14px'
-    }
-  },
-    { title: "Actions", field: "" ,
-    cellStyle : {
-      fontSize : '14px'
-    },
-    render:() =>
-                <div style={{width : '100px' , cursor:'pointer'}}>
-                    <ZoomInIcon style={{ width :'20px', color:'lightblue',}} />
-                    <EditIcon style={{ width :'20px', color:'green',marginLeft:'10px'}}/>
-                    <DeleteIcon  style={{ width :'20px',marginLeft:'10px' , color:'red'}}/>
-                </div>    
-  }
+   },{title:"Deleted",
+   render:() =>
+             <div style={{width : '100px'}}>
+                     <div style={{paddingLeft:'20px'}}>
+                        <span style={{color:'red' ,cursor:'pointer' , }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+                    </div>
+      
+          {/* Modal */}
+                  <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalCenterTitle">Permanent Delete Maahir</h5>
+                          <button type="button"  className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div className="modal-body">
+                              <Alert variant="filled" severity="error">
+                                This item will be permanently deleted.
+                              </Alert>
+                              <div>
+                                <p>
+                                  
+                                <span>
+                                  <p> </p>  
+                                  <p> Are you sure you want to permanently delete
+                                  <span  style={{backgroundColor:'orange'}}>Span </span> ?
+                                </p>
+                                </span>
+              
+                                <span>
+                                  <p> 
+                                  This action cannot be undone and may cause data integrity!
+                                  </p>
+                                </span>
+                                </p>
+              
+                              </div>
+              
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="button" className="btn btn-danger" data-dismiss="modal" >Permanent Delete Maahir</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+          </div>,
+
+      }
     
   ]
 
@@ -72,13 +96,13 @@ const Permission = () => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1>Permissions</h1>
+                  <h1>User</h1>
                 </div>
                 
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
-                    <li className="breadcrumb-item" ><Link to='Dashboard'>Home</Link></li>
-                    <li className="breadcrumb-item" ><Link to='Permission'>Permissions </Link> </li>
+                    <li className="breadcrumb-item" ><Link to='/Dashboard'>Home</Link></li>
+                    <li className="breadcrumb-item" ><Link to='/Users'>User </Link> </li>
                   </ol>
                 </div>
 
@@ -87,7 +111,7 @@ const Permission = () => {
                 </div>
 
                 <div className='col-12 mt-3'>
-                    <Link to='AddPermission'><button type="button" style={{width:'250px' , backgroundColor : '#fb9500' , border : 'none'}} class="btn btn-primary" ><i class="fas fa-plus"></i> Add New Permission  </button></Link> 
+                    <Link to='AddUsers'><button type="button" style={{width:'250px' , backgroundColor : '#fb9500' , border : 'none'}} class="btn btn-primary" ><i class="fas fa-plus"></i> Add New User  </button></Link> 
                 </div>
 
                 <div className='col-12'>
@@ -116,7 +140,7 @@ const Permission = () => {
                                     </div>
                                 <Card >
                                     <div className='card-header' style={{backgroundColor: '#fb9500' , color : 'white'}}>
-                                        <h3 class="card-title" style={{fontSize : "15px"}} >Results for "All Permissions"</h3>
+                                        <h3 class="card-title" style={{fontSize : "15px"}} >Results for "All Users"</h3>
                                     </div>
 
                                     
@@ -133,31 +157,22 @@ const Permission = () => {
                                             // //this is option section
                                             {
                                               exportButton: true,
-                                              actionsColumnIndex: -1,
-                                              addRowPosition : 'first',
                                               selection: true,
+                                              actionsColumnIndex: -1,
                                               rowStyle: x => {
                                                 if (x.tableData.id % 2) {
                                                     return {backgroundColor: "#f2f2f2"}
                                                                         }
                                                             }
-                                            }
-                                          }
-                                          editable= {
-                                            {onRowAdd : newData =>
-                                              new Promise((resolve, reject) => {
-                                                  setTimeout(() => {
-                                                      setTabledata([...Tabledata, newData]); 
-
-                                                      resolve();
-                                                  }, 1000);
-                                              }),}
+                                                }
                                           }
                                           components={{
                                             Cell: props => (
                                               <MTableCell {...props} style={{ padding: '4px 8px 4px 8px' }} />
                                             ),
                                           }}
+                                          
+                                          
                                           
 
                                           data={ query =>
@@ -166,7 +181,7 @@ const Permission = () => {
 
                                               
                                               // prepare your data and then call resolve like this:
-                                               let url = 'http://localhost:3000/olympic?'
+                                              let url = 'https://jsonplaceholder.typicode.com/users'
                                               //searching
                                               // if (query.search) {
                                               //   url += `q=${query.search}`
@@ -186,13 +201,15 @@ const Permission = () => {
                                               .then(resp => {
                                                 resolve({
                                                   data: resp,// your data array
-                                                  page: query.page,// current page number
-                                                  totalCount: 20// total row number
+                                                   page: query.page,// current page number
+                                                   totalCount: 20// total row number
                                                 });
                                               })
 
                                             })
                                           }
+
+                                         
                                         />
                                       </div>
                                   </Card>
@@ -210,4 +227,4 @@ const Permission = () => {
         </>
     )
     }
-export default Permission;
+export default User;

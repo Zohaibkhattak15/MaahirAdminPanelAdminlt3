@@ -17,8 +17,8 @@ export default function Home() {
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item" ><Link to='/'>Home</Link></li>
-                    <li className="breadcrumb-item" ><Link to='/Dashboard'>Dashboard </Link> </li>
-                    <li className="breadcrumb-item" ><Link to='/overviewstats'>overview & stats </Link> </li>
+                    <li className="breadcrumb-item" ><Link to='/Home'>Dashboard </Link> </li>
+                    <li className="breadcrumb-item" ><Link to='/'>overview & stats </Link> </li>
                   </ol>
                 </div>
 

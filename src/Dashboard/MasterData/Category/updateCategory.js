@@ -15,7 +15,6 @@ const UpdateCategory = (props) => {
       .then(resp => console.log(resp))
       .catch(err => console.log(err)) 
     }
-    console.log(rowData.athlete)
     return (
       <div className="wrapper" style={{backgroundColor : 'white'}}>
       {/* Navbar */}

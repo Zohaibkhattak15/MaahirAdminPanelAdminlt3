@@ -23,9 +23,9 @@ export default function Menu() {
 
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4" style ={{ height : '1000px'}}>
-            <Link  to='/Dashboard' className={click === 'MaahirPro' ? ' brand-link activepage' : "brand-link"}  onClick={() => setclick('MaahirPro')}>
+            <Link  to='/Home' className={click === 'MaahirPro' ? ' brand-link activepage' : "brand-link"}  onClick={() => setclick('MaahirPro')}>
                 <span className="brand-text font-weight-light">
-                    <strong > MaahirPro Admin </strong>
+                    <strong style={{marginLeft:'30px'}} > MaahirPro Admin </strong>
                 </span>
             </Link>
             <div className="sidebar">
@@ -34,7 +34,7 @@ export default function Menu() {
                     <img src="dist/img/user2-160x160.jpg" className={click === 'image' ? "img-circle elevation-2 activepage"  : "img-circle elevation-2"} onClick={() => setclick('image')}  alt="UserImgPhoto" />
                 </div>
                 <div className="info">
-                    <Link to='/Dashboard' className="d-block">Saif</Link>
+                    <Link to='/Home' className="d-block">Saif</Link>
                 </div>
                 </div>
                 <div className="form-inline">
@@ -54,7 +54,7 @@ export default function Menu() {
                 <nav className="mt-2">
                 <ul className="nav nav-pills nav-sidebar flex-column" data-widget= "treeview"   role="menu" data-accordion="false" >
                     
-                <Link to='/Dashboard' className = "nav-link " style={{color:'white'}} >
+                <Link to='/Home' className = "nav-link " style={{color:'white'}} >
                 <i class="fas fa-tachometer-alt"></i>
                         <p style={{marginLeft : '8px' , }}>
                             Dashboard 

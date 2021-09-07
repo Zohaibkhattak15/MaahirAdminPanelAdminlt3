@@ -7,7 +7,6 @@ import {Select,MenuItem} from '@material-ui/core';
 import {MTableCell} from 'material-table';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
-import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 
 // { userData : {users, filteredData}, dispatch }
@@ -67,10 +66,6 @@ function ServiceProviders() {
     }
   }
 
-  const updateRecord = () => {
-    alert('the record updated...')
-  }
-  
   const onButtonClick = () => {
     setfilterData( gold === 'all' ? allData : allData.filter( data => data.gold === gold));
   }
@@ -172,16 +167,7 @@ function ServiceProviders() {
                     </div>
                   </div>                  
           </div>,
-          },
-          {
-            title:'Update ' ,
-            render:()=> 
-            <div> 
-              <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon  onClick={updateRecord}/></span>
-            </div>
-
-          }
-    
+          },  
   ]
 
 

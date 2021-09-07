@@ -37,6 +37,7 @@ export default function App() {
           <ProtectedRoutes  path='/AddPermission' name='AddPermission' component={Layout} /> */}
 
 <Route  exact  path="/" component={Login} />  
+          <Route  path='/Home' name='Home' component={Layout} />
           <Route  path="/Dashboard" name="Home" component={Layout} />
           <Route  path='/Appointment' name="Appointment"  component={Layout}  />
           <Route  path='/Appversion' name="Appversion" component={Layout}  />
@@ -51,6 +52,7 @@ export default function App() {
           <Route  path='/Group' name='Group' component={Layout} />
           <Route  path='/addGroup' name='addGroup' component={Layout} />
           <Route  path='/User' name='User' component={Layout} />
+          <Route  path='/AddUsers' name='AddUsers' component={Layout} />
           <Route  path='/Permission' name='Permission' component={Layout} />
           <Route  path='/AddPermission' name='AddPermission' component={Layout} />
           

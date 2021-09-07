@@ -9,23 +9,19 @@ import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 const Category = () => {
 
-  // const [selectedRow] = useState(null);
   const [tabledata, setTabledata] = useState([]);
   const [uniqueId, setuniqueId] = useState();
   const  history = useHistory();
 
 
-  function updateRecord (index){
-    console.log(index);
+  function updateRecord (){
+    console.log(uniqueId);
       history.push({
         pathname: '/updateCategory',
-        state: tabledata[index]
+        state: tabledata[uniqueId]
       });
-   
-
   }
   
-
   useEffect(() => {
     getStudent();
     
@@ -33,13 +29,13 @@ const Category = () => {
 
    const getStudent = () =>{
     let url = 'http://localhost:3000/olympic'
-        
     fetch(url).then( resp => resp.json()).then( resp => {
      setTabledata(resp)
     })
    }
 
   const columns = [
+   
     { title: "Title", field: "athlete" ,
       cellStyle : {
         fontSize : '14px'
@@ -78,18 +74,15 @@ const Category = () => {
   },
   {
     title: "Update", field: "", 
-    render:()=><div>
-    <div>
-      <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon /></span>
-    </div>
-    
-  </div>,
+    render:(rowData) => 
+      <div>
+        <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon 
+        onClick={
+          updateRecord
+          } /></span>
+      </div>,
  },
-
-    
-  ]
-
-
+]
     return (
         <>
             <div className="wrapper">
@@ -152,7 +145,7 @@ const Category = () => {
                                         <MaterialTable
                                           title=""
                                           columns={columns}
-                                          onRowClick={((evt, selectedRow) => updateRecord(selectedRow.tableData.id))}
+                                          // onRowClick={((evt, selectedRow) => updateRecord(selectedRow.tableData.id))}
                                           options={
                                           
                                             {
@@ -170,6 +163,7 @@ const Category = () => {
                                           }
                                        
                                           data={
+                                            
                                             tabledata
                                             }
                                         />

@@ -11,10 +11,13 @@ import addCategory from '../Dashboard/MasterData/Category/addCategory';
 import AddAppointment from '../Dashboard/MasterData/Appointment/AddAppointment';
 import Group from '../Dashboard/Groups and Users/Groups/Group';
 import AddGroup from '../Dashboard/Groups and Users/Groups/AddGroup';
-import User from '../Dashboard/Groups and Users/User';
+import User from '../Dashboard/Groups and Users/Users/User';
+import AddUsers from '../Dashboard/Groups and Users/Users/AddUsers';
 import Permission from '../Dashboard/Groups and Users/Permissions/Permission';
 import AddPermission from '../Dashboard/Groups and Users/Permissions/AddPermission'
 import updateCategory from '../Dashboard/MasterData/Category/updateCategory';
+import Home from '../Dashboard/Home';
+
 
 
 export default function Content() {
@@ -37,7 +40,7 @@ export default function Content() {
                     <Route path='/AddPermission'  component={AddPermission} /> */}
 
 
-                 
+                    <Route path='/Home' component={Home} />
                     <Route path='/Appointment' component={Appointment} />
                     <Route path='/Appversion' component={Appversion} />
                     <Route path='/Category' component={Category} />
@@ -50,6 +53,7 @@ export default function Content() {
                     <Route path='/Group'  component={Group} />
                     <Route path='/AddGroup'  component={AddGroup} />                    
                     <Route path='/User'  component={User}/>
+                    <Route path='/AddUsers'  component={AddUsers}/>
                     <Route path='/Permission'  component={Permission} />
                     <Route path='/AddPermission'  component={AddPermission} />
              
