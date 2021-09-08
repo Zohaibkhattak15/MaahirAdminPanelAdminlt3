@@ -3,14 +3,13 @@ import MaterialTable from 'material-table'
 import { Link , useHistory} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
 import './Category.css';
-import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
-
-
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import {MTableCell} from 'material-table';
 
 const Category = () => {
 
   const [tabledata, setTabledata] = useState([]);
-  const [uniqueId, setuniqueId] = useState();
+  const [uniqueId] = useState();
   const  history = useHistory();
 
 
@@ -74,12 +73,13 @@ const Category = () => {
   },
   {
     title: "Update", field: "", 
-    render:(rowData) => 
-      <div>
-        <span style={{color:'red' ,cursor:'pointer'}}><SystemUpdateAltIcon 
+    render:() => 
+      <div style={{display:'flex'}}>
+        <span style={{color:'green' ,cursor:'pointer'}}><EditOutlinedIcon 
         onClick={
           updateRecord
           } /></span>
+         <span><p className='mt-2 ml-1' style={{fontSize:'12px', color:'red',cursor:'pointer'}}>Inactive</p></span> 
       </div>,
  },
 ]
@@ -158,14 +158,14 @@ const Category = () => {
                                                     return {backgroundColor: "#f2f2f2"}
                                                                         }
                                                             }
-                                            }
-                                            
-                                          }
+                                            }}
+                                            components={{
+                                              Cell: props => (
+                                                <MTableCell {...props} style={{ padding: '4px 5px 4px 5px' }} />
+                                              ),
+                                            }}
                                        
-                                          data={
-                                            
-                                            tabledata
-                                            }
+                                          data={tabledata}
                                         />
                                       </div>
                                   </Card>

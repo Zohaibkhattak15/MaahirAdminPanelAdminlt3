@@ -5,8 +5,11 @@ import MaterialTable from 'material-table'
 // import * as actionTypes from '../../Store/actionTypes/common';
 import {Select,MenuItem} from '@material-ui/core';
 import {MTableCell} from 'material-table';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { Link } from 'react-router-dom';
+
 
 
 // { userData : {users, filteredData}, dispatch }
@@ -75,54 +78,118 @@ function ServiceProviders() {
   // }
      
   const columns = [
-    
+    {
+      title: 'Avatar',
+      field: 'avatar',
+      render: () => (
+        <img
+          style={{ height: 36, borderRadius: '50%' }}
+          src='avt.png'
+          alt='avatar'
+        />
+      ),
+    },
     { 
-      title: "athlete", field: "athlete", 
+      title: 'Name',
       cellStyle : {
-        fontSize : '14px'
-      }
+
+        fontSize : '12px'
+      },
+      render: rowData =>(
+        
+        <Link ><u> {rowData.athlete} </u> </Link>  
+        
+      ) 
+
    },
+   { 
+    title: 'Email',
+    field:'sport',
+    cellStyle : {
+
+      fontSize : '12px'
+    },      
+
+ },
+   { 
+    title: 'Gender',
+    field:'',
+    cellStyle : {
+      fontSize : '12px'
+    },     
+    render:() => 
+    <div><p style={{padding:'5px 25px' , backgroundColor:'purple' , color:'white'}}> Male</p></div> 
+
+ },
+ { 
+  title: 'Group',
+  field:'',
+  cellStyle : {
+    fontSize : '12px'
+  }
+},
+{ 
+  title: 'Referral',
+  field:'',
+  cellStyle : {
+    fontSize : '12px'
+  }
+},
     { 
-      title: "age", field: "age",
+      title: "mobile", field: "mobile",
       
       cellStyle : {
-        fontSize : '14px'
-      } 
+        fontSize : '12px'
+      },
+      render : (rowData) => <div className='text-center'>{rowData.age}</div> 
     },
     { 
-      title: "country", field: "country",
+      title: "Address", field: "country",
      
       cellStyle : {
-        fontSize : '14px'
+        fontSize : '12px'
       } 
     },
     { 
-      title: "year", field: "year",
+      title: "UserType", field: "",
      
       cellStyle : {
-        fontSize : '14px'
-      } 
-    },
-    { 
-      title: "bs", field: 'company.bs',
+        fontSize : '12px'
+      },
       render:()=><div>
         <div>
-          <span style={{backgroundColor:'gray' , borderRadius:'5px' , padding : '5px 5px'}}>Pending</span>
+          <span><img src='poster.png' alt='poster '  width='70px' height='70px' /></span>
         </div>
-      </div>,
-      
+      </div>, 
+    },
+    { 
+      title: "Added On", field: 'date',
       cellStyle : {
-        fontSize : '14px'
+        fontSize : '12px'
       }
+    },
+    { 
+      title: "Status", field: 'date',
+      cellStyle : {
+        fontSize : '12px'
+      },     
+      render:() => 
+      <div><p style={{padding:'5px 25px' , backgroundColor:'lightblue' , color:'white'}}> Male</p></div> 
+  
     },
     
       {
              title: "Deleted", field: "" ,
+             cellStyle : {
+              fontSize : '12px'
+            },
   
              render:() =>
-             <div style={{width : '100px'}}>
-                     <div style={{paddingLeft:'20px'}}>
-                        <span style={{color:'red' ,cursor:'pointer' , }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+             <div>
+                     <div>
+                        <EditOutlinedIcon style={{color:'green' ,}}/>
+                        <span style={{color:'red' ,cursor:'pointer' , marginLeft:'1em' }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+                        <DeleteIcon style={{color:'orange' , marginLeft:'.5em'}} />
                     </div>
       
           {/* Modal */}
@@ -254,10 +321,7 @@ function ServiceProviders() {
                                                     return {backgroundColor: "#f2f2f2"}
                                                                         }
                                                             }
-                                            }
-
-                                            
-                                          }
+                                            }}
 
                                           actions={[
                                             {

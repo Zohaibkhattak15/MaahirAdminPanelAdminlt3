@@ -1,8 +1,16 @@
 import { Card } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+/* Import the store from the store folder */
+
+// import store from '../../../Store/configureStore'
+// import * as actions from '../../../Store/dataTable/'
+
+//const store = configureStore();
+
  
-export default function AddPermission() {
+export default function AddProvince() {
     return (
       <div className="wrapper" style={{backgroundColor : 'white'}}>
       {/* Navbar */}
@@ -12,14 +20,14 @@ export default function AddPermission() {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1>Add Permissions</h1>
+                <h1>Add Category</h1>
               </div>
               
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item"><Link to='/Dashboard'>Home</Link> </li>
-                  <li className="breadcrumb-item active"><Link to='/Permission'>Permissions  </Link></li>
-                  <li className="breadcrumb-item active"><Link to=''>Add Permissions</Link></li>
+                  <li className="breadcrumb-item active"><Link to='/Province'>Province  </Link></li>
+                  <li className="breadcrumb-item active"><Link to='/AddProvince'>Add Province</Link></li>
                 </ol>
               </div>
 
@@ -35,13 +43,16 @@ export default function AddPermission() {
                   <form className="form-horizontal">
                   <div className="card-body">
                     <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Name :</label>
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Country :</label>
                       <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputEmail3" placeholder="" />
+                      <select type="text" className="form-control" id="inputEmail3" placeholder="" >
+                            <option value="Select Country">Select City</option>
+                            <option value="Pakistan">Pakistan</option>
+                        </select>    
                       </div>
                     </div>
                     <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Tag :</label>
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Title :</label>
                         <div className="col-sm-10">
                           <textarea type="text" className="form-control" id="inputEmail3" placeholder="" />
                         </div>

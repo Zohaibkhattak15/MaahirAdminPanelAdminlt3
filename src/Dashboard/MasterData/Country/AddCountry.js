@@ -1,8 +1,9 @@
-import { Card } from '@material-ui/core';
 import React from 'react';
+import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
  
-export default function AddPermission() {
+const AddCountry = () =>  {
+
     return (
       <div className="wrapper" style={{backgroundColor : 'white'}}>
       {/* Navbar */}
@@ -12,14 +13,14 @@ export default function AddPermission() {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1>Add Permissions</h1>
+                <h1>Add Country</h1>
               </div>
               
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item"><Link to='/Dashboard'>Home</Link> </li>
-                  <li className="breadcrumb-item active"><Link to='/Permission'>Permissions  </Link></li>
-                  <li className="breadcrumb-item active"><Link to=''>Add Permissions</Link></li>
+                  <li className="breadcrumb-item active"><Link to='/Country'>Country  </Link></li>
+                  <li className="breadcrumb-item active"><Link to='/AddCountry'>Add Country</Link></li>
                 </ol>
               </div>
 
@@ -30,22 +31,20 @@ export default function AddPermission() {
               <div className='col-1'>
               
               </div>
-            <Card style={{width : '100%' , display:'flex', justifyContent:'center'}}>  
+            <Card style={{width : '100%',display:'flex', justifyContent:'center'}}>  
               <div className='col-9'>
                   <form className="form-horizontal">
                   <div className="card-body">
                     <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Name :</label>
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Title :</label>
                       <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputEmail3" placeholder="" />
+                        <input 
+                        type="text" 
+                        className="form-control" 
+                        id="inputEmail3" 
+                        />
                       </div>
                     </div>
-                    <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Tag :</label>
-                        <div className="col-sm-10">
-                          <textarea type="text" className="form-control" id="inputEmail3" placeholder="" />
-                        </div>
-                      </div>
                     
                   </div>
                 </form>
@@ -71,7 +70,7 @@ export default function AddPermission() {
 
                                 </div>
                                 <div className='col-2'> 
-                                  <button type="submit" style={{width:'150px'}} className="btn btn-default float-right"><i class="fas fa-redo"></i> Reset</button>
+                                  <button type="submit" style={{width:'150px'}} className="btn btn-default float-right" ><i class="fas fa-redo"></i> Reset</button>
                                 </div>
                           </div>
                         </div>
@@ -87,3 +86,5 @@ export default function AddPermission() {
     </div>
     )
 }
+
+export default AddCountry;

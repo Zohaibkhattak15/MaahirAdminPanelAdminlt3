@@ -41,7 +41,7 @@ const AddGroup = () =>  {
               <div className='col-1'>
               
               </div>
-            <Card style={{width : '100%'}}>  
+            <Card style={{width : '100%',display:'flex', justifyContent:'center'}}>  
               <div className='col-9'>
                   <form className="form-horizontal">
                   <div className="card-body">

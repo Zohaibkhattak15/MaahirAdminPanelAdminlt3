@@ -3,6 +3,7 @@ import MaterialTable from 'material-table'
 import { Link } from 'react-router-dom';
 import {MTableCell} from 'material-table';
 // import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import Alert from '@material-ui/lab/Alert';
 
 
 
@@ -54,46 +55,134 @@ function Customers() {
         />
       ),
    },
-    { 
-      title: "Name", field: "name",
-      
-     
+   { 
+    title: 'Name',
+    field:'name',
+    cellStyle : {
+
+      fontSize : '12px'
     },
+    render: rowData =>(
+      <Link ><u> {rowData.name} </u> </Link>  
+       ) 
+  },
     { 
       title: "Email", field: "email",
+      cellStyle : {
+
+        fontSize : '12px'
+      },
      
     },
     { 
       title: "Gender", field: "",
+      cellStyle : {
+
+        fontSize : '12px'
+      },
       render:()=><div>
         <div>
-          <span style={{backgroundColor:'gray' , borderRadius:'5px' , padding : '5px 5px'}}>Male</span>
+          <span style={{backgroundColor:'purple' , borderRadius:'5px' , padding : '5px 5px'}}>Male</span>
         </div>
         
       </div>, 
     },
     { 
-      title: "User Type", field: "" ,
-      render:()=><div>
-      <div>
-        <span style={{backgroundColor:'gray' , borderRadius:'5px' , padding : '5px 5px'}}>Customer</span>
-      </div>
-      
-    </div>,
+      title: "Group ", field: "" ,
      
     },
     { 
-      title: "Added On", field: "website" ,
+      title: "Refferal ", field: "" ,
      
     },
-    {
-       title: "Status", field: "" ,
-       render:()=><div>
-      <div>
-        <span style={{backgroundColor:'gray' , borderRadius:'5px' , padding : '5px 5px'}}>Active</span>
-      </div>      
-    </div>
+    { 
+      title: "Mobile ", field: "" ,
+     
     },
+    { 
+      title: "Address ", field: "" ,
+     
+    },
+    { 
+      title: "UserType", field: "",
+     
+      cellStyle : {
+        fontSize : '12px'
+      },
+      render:()=><div>
+        <div>
+          <span><img src='poster.png' alt='poster '  width='70px' height='70px' /></span>
+        </div>
+      </div>, 
+    },
+    {
+       title: "Added On", field: "" ,
+      
+    },
+    { 
+      title: "Status", field: 'date',
+      cellStyle : {
+        fontSize : '12px'
+      },     
+      render:() => 
+      <div><p style={{padding:'5px 25px' , backgroundColor:'lightblue' , color:'white'}}> Male</p></div> 
+  
+    },
+    {
+      title: "Deleted", field: "" ,
+      cellStyle : {
+       fontSize : '12px'
+     },
+
+      render:() =>
+      <div>
+              <div>
+                 <span style={{color:'red' ,cursor:'pointer' , marginLeft:'2em' }}><i className="fas fa-ban fa-1x " type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
+             </div>
+
+   {/* Modal */}
+           <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+             <div className="modal-dialog modal-dialog-centered" role="document">
+               <div className="modal-content">
+                 <div className="modal-header">
+                   <h5 className="modal-title" id="exampleModalCenterTitle">Permanent Delete Maahir</h5>
+                   <button type="button"  className="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                   </button>
+                 </div>
+                 <div className="modal-body">
+                       <Alert variant="filled" severity="error">
+                         This item will be permanently deleted.
+                       </Alert>
+                       <div>
+                         <p>
+                           
+                         <span>
+                            
+                           <p> Are you sure you want to permanently delete
+                           
+                         </p>
+                         </span>
+       
+                         <span>
+                           <p> 
+                           This action cannot be undone and may cause data integrity!
+                           </p>
+                         </span>
+                         </p>
+       
+                       </div>
+       
+                 </div>
+                 <div className="modal-footer">
+                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                   <button type="button" className="btn btn-danger" data-dismiss="modal" >Permanent Delete Maahir</button>
+                 </div>
+               </div>
+             </div>
+           </div>                  
+   </div>,
+   },  
   ]
   return (
       

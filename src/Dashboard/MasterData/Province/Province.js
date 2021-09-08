@@ -1,87 +1,50 @@
 import React from 'react';
 import MaterialTable from 'material-table'
 import { Link } from 'react-router-dom'
-import {Card} from 'react-bootstrap';
-import Alert from '@material-ui/lab/Alert';
+import {Card} from 'react-bootstrap'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {MTableCell} from 'material-table';
 
-const User = () => {
+
+
+
+
+const Province = () => {
 
 
   const columns = [
-    { title: "Group", field: "name" ,
+    { title: "ID", field: "id" ,
       cellStyle : {
         fontSize : '14px'
-      },
-      
+      }
     },
-    { title: "Description", field: "username",
+    { title: "Pakistan", field: "athlete",
     
     cellStyle : {
       fontSize : '14px'
-    } ,
-    render: rowData => <Link to='viewUser'><u> {rowData.username} </u> </Link>
+    } 
   },
-    { title: "Added On", field: "website",
+  { title: "Title", field: "athlete",
+    
+  cellStyle : {
+    fontSize : '14px'
+  } 
+}
+  ,
+   { title: "Actions", field: "",
     cellStyle : {
       fontSize : '14px'
-    }
-   },
-    { title: "Status", field: "email",
-    cellStyle : {
-      fontSize : '14px'
-    }
-   },{title:"Deleted",
-   render:() =>
-             <div style={{width : '100px'}}>
-                     <div style={{paddingLeft:'20px'}}>
-                        <span style={{color:'red' ,cursor:'pointer' , }}><i className="fas fa-ban" type="button" data-toggle="modal" data-target="#exampleModalCenter" ></i></span>
-                    </div>
-      
-          {/* Modal */}
-                  <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5 className="modal-title" id="exampleModalCenterTitle">Permanent Delete Maahir</h5>
-                          <button type="button"  className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                          </button>
-                        </div>
-                        <div className="modal-body">
-                              <Alert variant="filled" severity="error">
-                                This item will be permanently deleted.
-                              </Alert>
-                              <div>
-                                <p>
-                                  
-                                <span>
-                                  <p> </p>  
-                                  <p> Are you sure you want to permanently delete
-                                  <span  style={{backgroundColor:'orange'}}>Span </span> ?
-                                </p>
-                                </span>
-              
-                                <span>
-                                  <p> 
-                                  This action cannot be undone and may cause data integrity!
-                                  </p>
-                                </span>
-                                </p>
-              
-                              </div>
-              
-                        </div>
-                        <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="button" className="btn btn-danger" data-dismiss="modal" >Permanent Delete Maahir</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
-          </div>,
+    },
+    render:() => 
+      <div>
+        <span style={{color:'red' ,cursor:'pointer' }}>
+          <EditIcon style={{ width :'15px', color:'green',marginLeft:'10px'}}/>
+          <DeleteIcon  style={{ width :'15px',marginLeft:'10px'}}/>
 
-      }
+        </span>
+      </div>,
+   }
     
   ]
 
@@ -96,13 +59,13 @@ const User = () => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1>User</h1>
+                  <h1>Province</h1>
                 </div>
                 
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item" ><Link to='/Dashboard'>Home</Link></li>
-                    <li className="breadcrumb-item" ><Link to='/Users'>User </Link> </li>
+                    <li className="breadcrumb-item" ><Link to='/Group'>Province </Link> </li>
                   </ol>
                 </div>
 
@@ -111,7 +74,7 @@ const User = () => {
                 </div>
 
                 <div className='col-12 mt-3'>
-                    <Link to='AddUsers'><button type="button" style={{width:'250px' , backgroundColor : '#fb9500' , border : 'none'}} class="btn btn-primary" ><i class="fas fa-plus"></i> Add New User  </button></Link> 
+                    <Link to='AddProvince'><button type="button" style={{width:'250px' , backgroundColor : '#fb9500' , border : 'none'}} class="btn btn-primary" ><i class="fas fa-plus"></i> Add New Province</button></Link> 
                 </div>
 
                 <div className='col-12'>
@@ -140,7 +103,7 @@ const User = () => {
                                     </div>
                                 <Card >
                                     <div className='card-header' style={{backgroundColor: '#fb9500' , color : 'white'}}>
-                                        <h3 class="card-title" style={{fontSize : "15px"}} >Results for "All Users"</h3>
+                                        <h3 class="card-title" style={{fontSize : "15px"}} >Results for "All Province"</h3>
                                     </div>
 
                                     
@@ -164,7 +127,8 @@ const User = () => {
                                                     return {backgroundColor: "#f2f2f2"}
                                                                         }
                                                             }
-                                                }
+                                            
+                                            }
                                           }
                                           components={{
                                             Cell: props => (
@@ -181,7 +145,7 @@ const User = () => {
 
                                               
                                               // prepare your data and then call resolve like this:
-                                              let url = 'https://jsonplaceholder.typicode.com/users'
+                                              let url = 'http://localhost:3000/olympic'
                                               //searching
                                               // if (query.search) {
                                               //   url += `q=${query.search}`
@@ -209,7 +173,7 @@ const User = () => {
                                             })
                                           }
 
-                                         
+                                          
                                         />
                                       </div>
                                   </Card>
@@ -227,4 +191,4 @@ const User = () => {
         </>
     )
     }
-export default User;
+export default Province;

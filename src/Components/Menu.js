@@ -151,6 +151,39 @@ export default function Menu() {
                             <p>APP Version</p>
                         </Link>
                         </li>
+                        <li 
+                        className={click === 'Country' ? "show-bgcolor"  :  "nav-item"} 
+                        onClick={() => {
+                        setclick('Country');
+                        }}
+                        >
+                        <Link to='Country' className="nav-link">
+                            <i className="far fa-circle nav-icon" />
+                            <p>Country</p>
+                        </Link>
+                        </li>
+                        <li 
+                        className={click === 'Province' ? "show-bgcolor"  :  "nav-item"} 
+                        onClick={() => {
+                        setclick('Province');
+                        }}
+                        >
+                        <Link to='Province' className="nav-link">
+                            <i className="far fa-circle nav-icon" />
+                            <p>Province</p>
+                        </Link>
+                        </li>
+                        <li 
+                        className={click === 'City' ? "show-bgcolor"  :  "nav-item"} 
+                        onClick={() => {
+                        setclick('City');
+                        }}
+                        >
+                        <Link to='City' className="nav-link">
+                            <i className="far fa-circle nav-icon" />
+                            <p>City</p>
+                        </Link>
+                        </li>
                     </ul>
                     </li>
 

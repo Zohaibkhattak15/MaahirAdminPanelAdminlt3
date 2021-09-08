@@ -29,7 +29,7 @@ export default function Smsnotify() {
               <div className='col-12' >
                 <hr></hr>
               </div>
-              <Card style={{width:'100%' ,margin : '0px 0px' , padding : '0px 0px'}}>
+              <Card style={{width:'100%' , display:'flex', justifyContent:'center'}}>
               
               <div className='col-12'>
               

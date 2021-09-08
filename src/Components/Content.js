@@ -16,7 +16,19 @@ import AddUsers from '../Dashboard/Groups and Users/Users/AddUsers';
 import Permission from '../Dashboard/Groups and Users/Permissions/Permission';
 import AddPermission from '../Dashboard/Groups and Users/Permissions/AddPermission'
 import updateCategory from '../Dashboard/MasterData/Category/updateCategory';
+import viewUser from '../Dashboard/Groups and Users/Users/viewUser';
 import Home from '../Dashboard/Home';
+import Country from '../Dashboard/MasterData/Country/Country';
+import AddCountry from '../Dashboard/MasterData/Country/AddCountry';
+import Province from '../Dashboard/MasterData/Province/Province';
+import AddProvince from '../Dashboard/MasterData/Province/AddProvince';
+import City from '../Dashboard/MasterData/City/City';
+import AddCity from '../Dashboard/MasterData/City/AddCity';
+
+
+
+
+
 
 
 
@@ -25,21 +37,6 @@ export default function Content() {
         <>
             
                 <Switch>
-                    {/* <Route path='/Appointment' component={Appointment} />
-                    <Route path='/Appversion' component={Appversion} />
-                    <Route path='/Category' component={Category} />
-                    <Route path='/Smsnotify' component={Smsnotify} />
-                    <Route path='/Coustomers' component={Coustomers} />
-                    <Route path='/ServiceProviders' component={ServiceProviders} />
-                    <Route path='/addcategory'     component={addCategory} />
-                    <Route path='/AddAppointment'     component={AddAppointment} />
-                    <Route path='/Group'  component={Group} />
-                    <Route path='/AddGroup'  component={AddGroup} />                    
-                    <Route path='/User'  component={User}/>
-                    <Route path='/Permission'  component={Permission} />
-                    <Route path='/AddPermission'  component={AddPermission} /> */}
-
-
                     <Route path='/Home' component={Home} />
                     <Route path='/Appointment' component={Appointment} />
                     <Route path='/Appversion' component={Appversion} />
@@ -53,9 +50,16 @@ export default function Content() {
                     <Route path='/Group'  component={Group} />
                     <Route path='/AddGroup'  component={AddGroup} />                    
                     <Route path='/User'  component={User}/>
+                    <Route path='/viewUser'  component={viewUser}/>
                     <Route path='/AddUsers'  component={AddUsers}/>
                     <Route path='/Permission'  component={Permission} />
                     <Route path='/AddPermission'  component={AddPermission} />
+                    <Route path='/Country'  component={Country} />
+                    <Route path='/AddCountry'  component={AddCountry} />
+                    <Route path='/Province'  component={Province} />
+                    <Route path='/AddProvince'  component={AddProvince} />
+                    <Route path='/City' component={City} />
+                    <Route path='/AddCity' component={AddCity} />
              
 
                 </Switch>

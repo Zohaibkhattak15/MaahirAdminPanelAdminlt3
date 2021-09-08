@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table'
+import {MTableCell} from 'material-table';
 
 
 
@@ -92,10 +93,18 @@ return (
                                         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         
                                         options={{
-                                            rowStyle: rowData => ({
-                                            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
-                                            })
+                                            exportButton: true,
+                                            rowStyle: x => {
+                                                if (x.tableData.id % 2) {
+                                                    return {backgroundColor: "#f2f2f2"}
+                                                                        }
+                                                            }
                                         }}
+                                        components={{
+                                            Cell: props => (
+                                              <MTableCell {...props} style={{ padding: '5px 3px 5px 3px' }} />
+                                            ),
+                                          }}
                                         data={query =>
                                             new Promise((resolve, reject) => {
                                             // prepare your data and then call resolve like this:

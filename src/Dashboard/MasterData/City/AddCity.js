@@ -1,8 +1,16 @@
 import { Card } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+/* Import the store from the store folder */
+
+// import store from '../../../Store/configureStore'
+// import * as actions from '../../../Store/dataTable/'
+
+//const store = configureStore();
+
  
-export default function AddPermission() {
+export default function AddCity() {
     return (
       <div className="wrapper" style={{backgroundColor : 'white'}}>
       {/* Navbar */}
@@ -12,14 +20,14 @@ export default function AddPermission() {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1>Add Permissions</h1>
+                <h1>Add Province</h1>
               </div>
               
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item"><Link to='/Dashboard'>Home</Link> </li>
-                  <li className="breadcrumb-item active"><Link to='/Permission'>Permissions  </Link></li>
-                  <li className="breadcrumb-item active"><Link to=''>Add Permissions</Link></li>
+                  <li className="breadcrumb-item active"><Link to='/City'>City  </Link></li>
+                  <li className="breadcrumb-item active"><Link to='/AddCity'>Add City</Link></li>
                 </ol>
               </div>
 
@@ -30,20 +38,46 @@ export default function AddPermission() {
               <div className='col-1'>
               
               </div>
-            <Card style={{width : '100%' , display:'flex', justifyContent:'center'}}>  
+            <Card  style={{width : '100%' , display:'flex', justifyContent:'center'}}>  
               <div className='col-9'>
                   <form className="form-horizontal">
                   <div className="card-body">
                     <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Name :</label>
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Province :</label>
                       <div className="col-sm-10">
-                        <input type="text" className="form-control" id="inputEmail3" placeholder="" />
+                        <select type="text" className="form-control" id="inputEmail3" placeholder="" >
+                            <option value="Select Country">Select Province</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="KPK">KPK</option>
+                            <option value="Sindh">Sindh</option>
+                        </select>    
                       </div>
                     </div>
                     <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Tag :</label>
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Country :</label>
+                      <div className="col-sm-10">
+                        <select type="text" className="form-control" id="inputEmail3" placeholder="" >
+                            <option value="Select Country">Select Country</option>
+                            <option value="Punjab">Pakistan</option>
+                        </select>    
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Title :</label>
                         <div className="col-sm-10">
-                          <textarea type="text" className="form-control" id="inputEmail3" placeholder="" />
+                          <input type="text" className="form-control" id="inputEmail3" placeholder="" />
+                        </div>
+                      </div>
+                      <div className="form-group row">
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Lat :</label>
+                        <div className="col-sm-10">
+                          <input type="text" className="form-control" id="inputEmail3" placeholder="" />
+                        </div>
+                      </div>
+                      <div className="form-group row">
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Lng :</label>
+                        <div className="col-sm-10">
+                          <input type="text" className="form-control" id="inputEmail3" placeholder="" />
                         </div>
                       </div>
                     

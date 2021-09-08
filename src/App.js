@@ -19,24 +19,8 @@ export default function App() {
       <BrowserRouter>
       <React.Suspense fallback={loading}>
         <Switch>
-          {/* <Route  exact path='/' component={Login} /> 
-          <ProtectedRoutes  path="/Dashboard" name="Home" component={Layout} />
-          <ProtectedRoutes  path='/Appointment' name="Appointment"  component={Layout}  />
-          <ProtectedRoutes  path='/AddAppointment' name='AddAppointment' component={Layout} />
-          <ProtectedRoutes  path='/Appversion' name="Appversion" component={Layout}  />
-          <ProtectedRoutes  path='/Category'  name='Category' component={Layout}  />
-          <ProtectedRoutes  path='/Smsnotify'  name='Smsnotify' component={Layout}  />
-          <ProtectedRoutes  path='/Coustomers' name='Coustomers' component={Layout} />
-          <ProtectedRoutes  path='/ServiceProviders' name='ServiceProviders' component={Layout} />
-          <ProtectedRoutes  path='/addCategory' name='addCategory' component={Layout} />
-          
-          <ProtectedRoutes  path='/Group' name='Group' component={Layout} />
-          <ProtectedRoutes  path='/addGroup' name='addGroup' component={Layout} />
-          <ProtectedRoutes  path='/User' name='User' component={Layout} />
-          <ProtectedRoutes  path='/Permission' name='Permission' component={Layout} />
-          <ProtectedRoutes  path='/AddPermission' name='AddPermission' component={Layout} /> */}
 
-<Route  exact  path="/" component={Login} />  
+        <Route  exact  path="/" component={Login} />  
           <Route  path='/Home' name='Home' component={Layout} />
           <Route  path="/Dashboard" name="Home" component={Layout} />
           <Route  path='/Appointment' name="Appointment"  component={Layout}  />
@@ -55,6 +39,14 @@ export default function App() {
           <Route  path='/AddUsers' name='AddUsers' component={Layout} />
           <Route  path='/Permission' name='Permission' component={Layout} />
           <Route  path='/AddPermission' name='AddPermission' component={Layout} />
+          <Route  path='/viewUser' name='viewUser' component={Layout} />
+          <Route  path='/Country' name='Country' component={Layout} />
+          <Route  path='/AddCountry' name='AddCountry' component={Layout} />
+          <Route  path='/Province' name='Province' component={Layout} />
+          <Route  path='/AddProvince' name='AddProvince' component={Layout} />
+          <Route  path='/City' name='City' component={Layout} />
+          <Route  path='/AddCity' name='AddCity' component={Layout} />
+
           
         </Switch>
         </React.Suspense>
